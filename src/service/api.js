@@ -21,3 +21,14 @@ export const getTrending = async () => {
     console.error(error.message);
   }
 };
+
+export const getMovieDetails = async movieId => {
+  try {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/${movieId}?api_key=8c1d02b978dbff183fcda89eac0b3f2e`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error.message);
+  }
+};

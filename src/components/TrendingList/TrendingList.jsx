@@ -9,7 +9,6 @@ const TrendingList = () => {
     const fetchTrending = async () => {
       try {
         const trendingMovies = await getTrending();
-        console.log(trendingMovies);
         setTrendingMovies(trendingMovies);
       } catch (error) {
         console.error('Error fetching trending movies:', error.message);
