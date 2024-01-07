@@ -32,3 +32,16 @@ export const getMovieDetails = async movieId => {
     console.error(error.message);
   }
 };
+
+export const getCast = async movieId => {
+  try {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=8c1d02b978dbff183fcda89eac0b3f2e`
+    );
+    console.log(response.data.cast);
+    console.log(response.data.cast.length);
+    return response.data.cast;
+  } catch (error) {
+    console.error(error.message);
+  }
+};
