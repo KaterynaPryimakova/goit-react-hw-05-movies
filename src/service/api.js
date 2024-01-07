@@ -38,9 +38,18 @@ export const getCast = async movieId => {
     const response = await axios.get(
       `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=8c1d02b978dbff183fcda89eac0b3f2e`
     );
-    console.log(response.data.cast);
-    console.log(response.data.cast.length);
     return response.data.cast;
+  } catch (error) {
+    console.error(error.message);
+  }
+};
+
+export const getReviews = async movieId => {
+  try {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=8c1d02b978dbff183fcda89eac0b3f2e&language=en-US&page=1`
+    );
+    return response.data.results;
   } catch (error) {
     console.error(error.message);
   }
