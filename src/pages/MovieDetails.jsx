@@ -13,26 +13,34 @@ const MovieDetails = () => {
 
   useEffect(() => {
     const getMovieData = async () => {
-      const {
-        poster_path,
-        title,
-        release_date,
-        vote_average,
-        overview,
-        genres,
-      } = await getMovieDetails(movieId);
+      try {
+        const movieData = await getMovieDetails(movieId);
 
-      const imgSrc = `https://image.tmdb.org/t/p/w300${poster_path}`;
-      const votePercent = Math.floor(vote_average * 10);
-      const releaseYear = release_date.split('-')[0];
-      const genresNames = genres.map(genre => genre.name).join(' ');
+        if (!movieData) return;
 
-      setPosterPath(imgSrc);
-      setTitle(title);
-      setReleaseDate(releaseYear);
-      setVoteAverage(votePercent);
-      setOverview(overview);
-      setGenres(genresNames);
+        const {
+          poster_path,
+          title,
+          release_date,
+          vote_average,
+          overview,
+          genres,
+        } = movieData;
+
+        const imgSrc = `https://image.tmdb.org/t/p/w300${poster_path}`;
+        const votePercent = Math.floor(vote_average * 10);
+        const releaseYear = release_date.split('-')[0];
+        const genresNames = genres.map(genre => genre.name).join(' ');
+
+        setPosterPath(imgSrc);
+        setTitle(title);
+        setReleaseDate(releaseYear);
+        setVoteAverage(votePercent);
+        setOverview(overview);
+        setGenres(genresNames);
+      } catch (error) {
+        console.error(error.message);
+      }
     };
 
     getMovieData();
