@@ -11,6 +11,14 @@ const MovieDetails = () => {
   const [overview, setOverview] = useState('');
   const [genres, setGenres] = useState('');
   const location = useLocation();
+  // const query = new URLSearchParams(location.search).get('query');
+
+  // const query = location.state.from.query;
+  // const fromHome = location.state?.from === '/';
+
+  // const backLinkHref = fromHome
+  // ? '/'
+  //   : `/movies${query ? `?query=${query}` : ''}`;
 
   useEffect(() => {
     const getMovieData = async () => {
@@ -51,29 +59,33 @@ const MovieDetails = () => {
     <div>
       <Link to={location.state.from}>Go back</Link>
 
-      <div>
+      <section>
         <img src={posterPath} alt={title} />
-        <h2>
+        <h1>
           {title}({releaseDate})
-        </h2>
+        </h1>
         <p>User score: {voteAverage}%</p>
-        <h3>Overview</h3>
+        <h2>Overview</h2>
         <p>{overview}</p>
-        <h3>Genres</h3>
+        <h2>Genres</h2>
         <p>{genres}</p>
-      </div>
+      </section>
 
-      <div>
+      <section>
         <p>Additional information</p>
         <ul>
           <li>
-            <Link to="cast">Cast</Link>
+            <Link to="cast" state={{ from: location }}>
+              Cast
+            </Link>
           </li>
           <li>
-            <Link to="reviews">Reviews</Link>
+            <Link to="reviews" state={{ from: location }}>
+              Reviews
+            </Link>
           </li>
         </ul>
-      </div>
+      </section>
 
       <Outlet />
     </div>

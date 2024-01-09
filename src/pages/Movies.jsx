@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { getMovie } from 'service/api';
 
 const Movies = () => {
   const [moviesList, setMoviesList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') || '';
+  const location = useLocation();
 
   useEffect(() => {
     const getResponse = async () => {
@@ -39,7 +40,7 @@ const Movies = () => {
       <ul>
         {moviesList.map(({ id, title }) => (
           <li key={id}>
-            <Link to={`${id}`} state={{ from: `/movies?query=${query}` }}>
+            <Link to={`${id}`} state={{ from: location }}>
               {title}
             </Link>
           </li>
