@@ -23,14 +23,13 @@ const Movies = () => {
     evt.preventDefault();
     const form = evt.currentTarget;
     setSearchParams({ query: form.elements.query.value } || '');
+    form.reset();
   };
 
   return (
     <>
       <form onSubmit={handleSubmit}>
         <input
-          // onChange={handleChange}
-          // value={query}
           type="text"
           placeholder="Enter the name of the movie"
           name="query"
@@ -40,7 +39,9 @@ const Movies = () => {
       <ul>
         {moviesList.map(({ id, title }) => (
           <li key={id}>
-            <Link to={`${id}`}>{title}</Link>
+            <Link to={`${id}`} state={{ from: `/movies?query=${query}` }}>
+              {title}
+            </Link>
           </li>
         ))}
       </ul>

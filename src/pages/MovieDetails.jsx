@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, Link, Outlet } from 'react-router-dom';
+import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { getMovieDetails } from 'service/api';
 
 const MovieDetails = () => {
@@ -10,6 +10,7 @@ const MovieDetails = () => {
   const [voteAverage, setVoteAverage] = useState(0);
   const [overview, setOverview] = useState('');
   const [genres, setGenres] = useState('');
+  const location = useLocation();
 
   useEffect(() => {
     const getMovieData = async () => {
@@ -48,8 +49,10 @@ const MovieDetails = () => {
 
   return (
     <div>
-      <img src={posterPath} alt={title} />
+      <Link to={location.state.from}>Go back</Link>
+
       <div>
+        <img src={posterPath} alt={title} />
         <h2>
           {title}({releaseDate})
         </h2>
@@ -59,6 +62,7 @@ const MovieDetails = () => {
         <h3>Genres</h3>
         <p>{genres}</p>
       </div>
+
       <div>
         <p>Additional information</p>
         <ul>
@@ -70,6 +74,7 @@ const MovieDetails = () => {
           </li>
         </ul>
       </div>
+
       <Outlet />
     </div>
   );
