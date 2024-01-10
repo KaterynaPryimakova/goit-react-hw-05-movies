@@ -1,6 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import { getMovie } from 'service/api';
 import { MoviesList } from 'components/MoviesList/MoviesList';
+import { SearchForm } from 'components/SearchForm/SearchForm';
 
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -18,14 +19,7 @@ const Movies = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Enter the name of the movie"
-          name="query"
-        />
-        <button type="submit">Search</button>
-      </form>
+      <SearchForm handleSubmit={handleSubmit} />
       <MoviesList getDataMovie={() => getMovie(query)} />
     </>
   );

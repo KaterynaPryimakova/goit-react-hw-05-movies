@@ -1,3 +1,5 @@
+import { AdditionalInfo } from 'components/AdditionalInfo/AdditionalInfo';
+import { MovieInfo } from 'components/MovieInfo/MovieInfo';
 import { useState, useEffect, useRef, Suspense } from 'react';
 import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { getMovieDetails } from 'service/api';
@@ -26,8 +28,6 @@ const MovieDetails = () => {
           ? `https://image.tmdb.org/t/p/w300${movieData.poster_path}`
           : defaultImg;
 
-        if (!movieData) return;
-
         const { title, release_date, vote_average, overview, genres } =
           movieData;
 
@@ -53,35 +53,16 @@ const MovieDetails = () => {
     <div>
       <Link to={backLinckLocationRef.current}>Go back</Link>
 
-      <section>
-        <div>
-          <img src={posterPath} alt={title} width="300" />
-        </div>
-        <h1>
-          {title}({releaseDate})
-        </h1>
-        <p>User score: {voteAverage}%</p>
-        <h2>Overview</h2>
-        <p>{overview}</p>
-        <h2>Genres</h2>
-        <p>{genres}</p>
-      </section>
+      <MovieInfo
+        posterPath={posterPath}
+        title={title}
+        releaseDate={releaseDate}
+        voteAverage={voteAverage}
+        overview={overview}
+        genres={genres}
+      />
 
-      <section>
-        <p>Additional information</p>
-        <ul>
-          <li>
-            <Link to="cast" state={{ from: location }}>
-              Cast
-            </Link>
-          </li>
-          <li>
-            <Link to="reviews" state={{ from: location }}>
-              Reviews
-            </Link>
-          </li>
-        </ul>
-      </section>
+      <AdditionalInfo />
 
       <Suspense fallback={<p>Loading...</p>}>
         <Outlet />
