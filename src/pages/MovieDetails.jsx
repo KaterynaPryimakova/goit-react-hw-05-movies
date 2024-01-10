@@ -19,18 +19,18 @@ const MovieDetails = () => {
       try {
         const movieData = await getMovieDetails(movieId);
 
+        const defaultImg =
+          '<https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700>';
+
+        const imgSrc = movieData.poster_path
+          ? `https://image.tmdb.org/t/p/w300${movieData.poster_path}`
+          : defaultImg;
+
         if (!movieData) return;
 
-        const {
-          poster_path,
-          title,
-          release_date,
-          vote_average,
-          overview,
-          genres,
-        } = movieData;
+        const { title, release_date, vote_average, overview, genres } =
+          movieData;
 
-        const imgSrc = `https://image.tmdb.org/t/p/w300${poster_path}`;
         const votePercent = Math.floor(vote_average * 10);
         const releaseYear = release_date.split('-')[0];
         const genresNames = genres.map(genre => genre.name).join(' ');
@@ -54,7 +54,9 @@ const MovieDetails = () => {
       <Link to={backLinckLocationRef.current}>Go back</Link>
 
       <section>
-        <img src={posterPath} alt={title} />
+        <div>
+          <img src={posterPath} alt={title} width="300" />
+        </div>
         <h1>
           {title}({releaseDate})
         </h1>
