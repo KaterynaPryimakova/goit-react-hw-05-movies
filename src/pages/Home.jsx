@@ -1,4 +1,6 @@
-import TrendingList from 'components/TrendingList/TrendingList';
+import React from 'react';
+import { getTrending } from 'service/api';
+import { MoviesList } from 'components/MoviesList/MoviesList';
 
 const Home = () => {
   return (
@@ -6,7 +8,7 @@ const Home = () => {
       <div>
         <h2>Trending today</h2>
         <ul>
-          <TrendingList />
+          <MoviesList getDataMovie={() => getTrending()} />
         </ul>
       </div>
     </>

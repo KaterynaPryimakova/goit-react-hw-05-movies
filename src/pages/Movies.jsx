@@ -1,24 +1,10 @@
-import { useState, useEffect } from 'react';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { getMovie } from 'service/api';
+import { MoviesList } from 'components/MoviesList/MoviesList';
 
 const Movies = () => {
-  const [moviesList, setMoviesList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
-  const location = useLocation();
-
-  useEffect(() => {
-    const getResponse = async () => {
-      try {
-        const response = await getMovie(query);
-        setMoviesList(response);
-      } catch (error) {
-        console.error(error.message);
-      }
-    };
-    getResponse();
-  }, [query]);
 
   const handleSubmit = evt => {
     evt.preventDefault();
@@ -40,16 +26,9 @@ const Movies = () => {
         />
         <button type="submit">Search</button>
       </form>
-      <ul>
-        {moviesList.map(({ id, title }) => (
-          <li key={id}>
-            <Link to={`${id}`} state={{ from: location }}>
-              {title}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <MoviesList getDataMovie={() => getMovie(query)} />
     </>
   );
 };
+
 export default Movies;

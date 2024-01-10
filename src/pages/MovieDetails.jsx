@@ -4,7 +4,7 @@ import { getMovieDetails } from 'service/api';
 
 const MovieDetails = () => {
   const location = useLocation();
-  const backLinckLocationRef = useRef(location.state?.from ?? '/movies');
+  const backLinckLocationRef = useRef(location.state?.from ?? '/');
   const { movieId } = useParams();
 
   const [posterPath, setPosterPath] = useState('');
