@@ -5,7 +5,7 @@ import { getMovie } from 'service/api';
 const Movies = () => {
   const [moviesList, setMoviesList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get('query') || '';
+  const query = searchParams.get('query') ?? '';
   const location = useLocation();
 
   useEffect(() => {
@@ -23,7 +23,10 @@ const Movies = () => {
   const handleSubmit = evt => {
     evt.preventDefault();
     const form = evt.currentTarget;
-    setSearchParams({ query: form.elements.query.value } || '');
+    if (form.elements.query.value === '') {
+      return setSearchParams({});
+    }
+    setSearchParams({ query: form.elements.query.value });
     form.reset();
   };
 

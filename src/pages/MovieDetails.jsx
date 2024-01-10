@@ -1,24 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { getMovieDetails } from 'service/api';
 
 const MovieDetails = () => {
+  const location = useLocation();
+  const backLinckLocationRef = useRef(location.state?.from ?? '/movies');
   const { movieId } = useParams();
+
   const [posterPath, setPosterPath] = useState('');
   const [title, setTitle] = useState('');
   const [releaseDate, setReleaseDate] = useState('');
   const [voteAverage, setVoteAverage] = useState(0);
   const [overview, setOverview] = useState('');
   const [genres, setGenres] = useState('');
-  const location = useLocation();
-  // const query = new URLSearchParams(location.search).get('query');
-
-  // const query = location.state.from.query;
-  // const fromHome = location.state?.from === '/';
-
-  // const backLinkHref = fromHome
-  // ? '/'
-  //   : `/movies${query ? `?query=${query}` : ''}`;
 
   useEffect(() => {
     const getMovieData = async () => {
@@ -57,7 +51,7 @@ const MovieDetails = () => {
 
   return (
     <div>
-      <Link to={location.state.from}>Go back</Link>
+      <Link to={backLinckLocationRef.current}>Go back</Link>
 
       <section>
         <img src={posterPath} alt={title} />
