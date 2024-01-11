@@ -2,7 +2,7 @@ export const MovieInfo = ({
   posterPath,
   title,
   releaseDate,
-  voteAverage,
+  votePercent,
   overview,
   genres,
 }) => {
@@ -14,7 +14,7 @@ export const MovieInfo = ({
       <h1>
         {title}({releaseDate})
       </h1>
-      <p>User score: {voteAverage}%</p>
+      <p>User score: {votePercent}%</p>
       <h2>Overview</h2>
       <p>{overview}</p>
       <h2>Genres</h2>

@@ -3,63 +3,42 @@ import { MovieInfo } from 'components/MovieInfo/MovieInfo';
 import { useState, useEffect, useRef, Suspense } from 'react';
 import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { getMovieDetails } from 'service/api';
+import { makeImgSrc } from 'service/helpers';
 
 const MovieDetails = () => {
   const location = useLocation();
   const backLinckLocationRef = useRef(location.state?.from ?? '/');
   const { movieId } = useParams();
-
-  const [posterPath, setPosterPath] = useState('');
-  const [title, setTitle] = useState('');
-  const [releaseDate, setReleaseDate] = useState('');
-  const [voteAverage, setVoteAverage] = useState(0);
-  const [overview, setOverview] = useState('');
-  const [genres, setGenres] = useState('');
+  const [movieDetails, setMovieDetails] = useState([]);
 
   useEffect(() => {
     const getMovieData = async () => {
       try {
         const movieData = await getMovieDetails(movieId);
-
-        const defaultImg =
-          '<https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700>';
-
-        const imgSrc = movieData.poster_path
-          ? `https://image.tmdb.org/t/p/w300${movieData.poster_path}`
-          : defaultImg;
-
-        const { title, release_date, vote_average, overview, genres } =
-          movieData;
-
-        const votePercent = Math.floor(vote_average * 10);
-        const releaseYear = release_date.split('-')[0];
-        const genresNames = genres.map(genre => genre.name).join(' ');
-
-        setPosterPath(imgSrc);
-        setTitle(title);
-        setReleaseDate(releaseYear);
-        setVoteAverage(votePercent);
-        setOverview(overview);
-        setGenres(genresNames);
+        setMovieDetails(movieData);
       } catch (error) {
         console.error(error.message);
       }
     };
-
     getMovieData();
   }, [movieId]);
+
+  const imgSrc = makeImgSrc(movieDetails.poster_path);
+  const votePercent = Math.floor(movieDetails.vote_average * 10);
+  const releaseYear = movieDetails.release_date.split('-')[0];
+  const genresNames = movieDetails.genres?.map(genre => genre.name).join(' ');
 
   return (
     <div>
       <Link to={backLinckLocationRef.current}>Go back</Link>
 
       <MovieInfo
-        posterPath={posterPath}
-        title={title}
-        releaseDate={releaseDate}
-        voteAverage={voteAverage}
-        overview={overview}
-        genres={genres}
+        imgSrc={imgSrc}
+        title={movieDetails.title}
+        releaseDate={releaseYear}
+        votePercent={votePercent}
+        overview={movieDetails.overview}
+        genres={genresNames}
       />
 
       <AdditionalInfo />
