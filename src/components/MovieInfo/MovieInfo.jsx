@@ -1,5 +1,5 @@
 export const MovieInfo = ({
-  posterPath,
+  imgSrc,
   title,
   releaseDate,
   votePercent,
@@ -9,7 +9,7 @@ export const MovieInfo = ({
   return (
     <section>
       <div>
-        <img src={posterPath} alt={title} width="300" />
+        <img src={imgSrc} alt={title} width="300" />
       </div>
       <h1>
         {title}({releaseDate})

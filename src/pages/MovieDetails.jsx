@@ -15,6 +15,7 @@ const MovieDetails = () => {
     const getMovieData = async () => {
       try {
         const movieData = await getMovieDetails(movieId);
+        if (!movieData) return;
         setMovieDetails(movieData);
       } catch (error) {
         console.error(error.message);
@@ -24,8 +25,9 @@ const MovieDetails = () => {
   }, [movieId]);
 
   const imgSrc = makeImgSrc(movieDetails.poster_path);
+  console.log(imgSrc);
   const votePercent = Math.floor(movieDetails.vote_average * 10);
-  const releaseYear = movieDetails.release_date.split('-')[0];
+  const releaseYear = movieDetails.release_date?.split('-')[0];
   const genresNames = movieDetails.genres?.map(genre => genre.name).join(' ');
 
   return (
