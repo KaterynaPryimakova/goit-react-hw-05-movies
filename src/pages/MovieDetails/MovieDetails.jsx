@@ -1,9 +1,12 @@
+import React from 'react';
 import { AdditionalInfo } from 'components/AdditionalInfo/AdditionalInfo';
 import { MovieInfo } from 'components/MovieInfo/MovieInfo';
 import { useState, useEffect, useRef, Suspense } from 'react';
 import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { getMovieDetails } from 'service/api';
 import { makeImgSrc } from 'service/helpers';
+import css from './MovieDetails.module.css';
+import { ReactComponent as ArrowIcon } from '../../icons/arrow-left.svg';
 
 const MovieDetails = () => {
   const location = useLocation();
@@ -32,7 +35,10 @@ const MovieDetails = () => {
 
   return (
     <div>
-      <Link to={backLinckLocationRef.current}>Go back</Link>
+      <Link to={backLinckLocationRef.current} className={css.goBack}>
+        <ArrowIcon className={css.icon} />
+        Go back
+      </Link>
 
       <MovieInfo
         imgSrc={imgSrc}
