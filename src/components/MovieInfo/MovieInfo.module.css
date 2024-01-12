@@ -7,6 +7,7 @@
 }
 .poster {
   border-radius: 32px;
+  max-height: 400px;
 }
 .textWrap {
   padding: 25px 0 10px 0;
@@ -16,7 +17,6 @@
   font-family: 'Oxygen', sans-serif;
   color: #81a5ff;
   text-shadow: -16px 7px 3px rgba(128, 130, 131, 0.47);
-  padding: 4px 0;
 }
 .paragraf {
   font-size: 22px;
