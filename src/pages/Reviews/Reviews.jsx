@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getReviews } from 'service/api';
 import css from './Reviews.module.css';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -13,7 +14,7 @@ const Reviews = () => {
         const dataReviews = await getReviews(movieId);
         setReviews(dataReviews);
       } catch (error) {
-        console.error(error.message);
+        Report.failure('Error', `${error.message}`, 'Okay');
       }
     };
 

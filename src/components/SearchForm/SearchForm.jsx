@@ -3,7 +3,7 @@ import { ReactComponent as SearchIcon } from '../../icons/search.svg';
 
 export const SearchForm = ({ handleSubmit }) => {
   return (
-    <form className={css.form} onSubmit={() => handleSubmit()}>
+    <form className={css.form} onSubmit={handleSubmit}>
       <input
         className={css.input}
         type="text"

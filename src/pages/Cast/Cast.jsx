@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getCast } from 'service/api';
 import { makeImgSrc } from 'service/helpers';
 import css from './Cast.module.css';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -14,7 +15,7 @@ const Cast = () => {
         const castData = await getCast(movieId);
         setCast(castData);
       } catch (error) {
-        console.error(error.message);
+        Report.failure('Error', `${error.message}`, 'Okay');
       }
     };
 

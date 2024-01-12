@@ -8,6 +8,7 @@ import { makeImgSrc } from 'service/helpers';
 import { Loader } from 'components/Loader/Loader';
 import css from './MovieDetails.module.css';
 import { ReactComponent as ArrowIcon } from '../../icons/arrow-left.svg';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 
 const MovieDetails = () => {
   const location = useLocation();
@@ -22,7 +23,7 @@ const MovieDetails = () => {
         if (!movieData) return;
         setMovieDetails(movieData);
       } catch (error) {
-        console.error(error.message);
+        Report.failure('Error', `${error.message}`, 'Okay');
       }
     };
     getMovieData();
