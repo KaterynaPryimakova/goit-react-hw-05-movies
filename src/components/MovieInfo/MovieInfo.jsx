@@ -1,3 +1,5 @@
+import css from './MovieInfo.module.css';
+
 export const MovieInfo = ({
   imgSrc,
   title,
@@ -7,18 +9,18 @@ export const MovieInfo = ({
   genres,
 }) => {
   return (
-    <section>
-      <div>
-        <img src={imgSrc} alt={title} width="300" />
+    <section className={css.movieInfo}>
+      <img className={css.poster} src={imgSrc} alt={title} width="300" />
+      <div className={css.textWrap}>
+        <h1 className={css.title}>
+          {title}({releaseDate})
+        </h1>
+        <p className={css.text}>User score: {votePercent}%</p>
+        <h2 className={css.paragraf}>Overview</h2>
+        <p className={css.text}>{overview}</p>
+        <h2 className={css.paragraf}>Genres</h2>
+        <p className={css.text}>{genres}</p>
       </div>
-      <h1>
-        {title}({releaseDate})
-      </h1>
-      <p>User score: {votePercent}%</p>
-      <h2>Overview</h2>
-      <p>{overview}</p>
-      <h2>Genres</h2>
-      <p>{genres}</p>
     </section>
   );
 };

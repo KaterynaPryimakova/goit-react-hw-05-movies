@@ -30,7 +30,6 @@
 .navLink:focus {
   background-color: #a8bffa;
   color: #ffffff;
-  /* box-shadow: 2px -2px 10px 0px rgba(125, 114, 125, 0.75); */
 }
 .active {
   position: relative;
@@ -39,5 +38,5 @@
   /* box-shadow: 2px -2px 10px 0px rgba(125, 114, 125, 0.75); */
 }
 .active:hover {
-  background-color: #81a5ff;
+  background-color: #273cff;
 }

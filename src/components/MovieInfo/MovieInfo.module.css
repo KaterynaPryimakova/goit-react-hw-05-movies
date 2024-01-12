@@ -1,0 +1,31 @@
+.movieInfo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 20px;
+  max-width: 600px;
+}
+.poster {
+  border-radius: 32px;
+}
+.textWrap {
+  padding: 25px 0 10px 0;
+}
+.title {
+  font-size: 32px;
+  font-family: 'Oxygen', sans-serif;
+  color: #81a5ff;
+  text-shadow: -16px 7px 3px rgba(128, 130, 131, 0.47);
+  padding: 4px 0;
+}
+.paragraf {
+  font-size: 22px;
+  font-family: 'Oxygen', sans-serif;
+  color: #81a5ff;
+}
+.text {
+  font-size: 16px;
+  font-family: 'Oxygen', sans-serif;
+  color: #000000;
+  margin-bottom: 10px;
+}

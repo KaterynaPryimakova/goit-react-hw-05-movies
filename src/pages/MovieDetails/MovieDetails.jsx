@@ -34,7 +34,7 @@ const MovieDetails = () => {
   const genresNames = movieDetails.genres?.map(genre => genre.name).join(' ');
 
   return (
-    <div>
+    <div className={css.container}>
       <Link to={backLinckLocationRef.current} className={css.goBack}>
         <ArrowIcon className={css.icon} />
         Go back
