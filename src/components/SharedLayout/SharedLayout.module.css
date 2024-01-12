@@ -13,6 +13,7 @@
 }
 
 .navLink {
+  font-family: 'Oxygen', sans-serif;
   display: inline-flex;
   padding: 8px 12px;
   min-width: 80px;

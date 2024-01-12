@@ -1,0 +1,27 @@
+.name {
+  font-size: 18px;
+  font-family: 'Oxygen', sans-serif;
+  color: #000000;
+}
+.text {
+  font-size: 14px;
+  font-family: 'Oxygen', sans-serif;
+  color: #000000;
+  margin-bottom: 8px;
+  width: 140px;
+}
+.acent {
+  color: #81a5ff;
+}
+.item {
+  width: calc((100% -80px) / 5);
+}
+.image {
+  border-radius: 14px;
+}
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px 0 0 38px;
+}
