@@ -26,7 +26,7 @@ export const SharedLayout = () => {
         </nav>
       </header>
 
-      <main className={css.container}>
+      <main className={css.maincContainer}>
         <Suspense fallback={<p>Loading...</p>}>
           <Outlet />
         </Suspense>
