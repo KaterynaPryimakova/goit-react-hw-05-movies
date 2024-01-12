@@ -7,14 +7,19 @@
   font-size: 14px;
   font-family: 'Oxygen', sans-serif;
   color: #000000;
-  margin-bottom: 8px;
   width: 140px;
+  text-align: center;
 }
 .acent {
   color: #81a5ff;
 }
 .item {
   width: calc((100% -80px) / 5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
 }
 .image {
   border-radius: 14px;

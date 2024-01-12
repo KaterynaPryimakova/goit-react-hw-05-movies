@@ -5,6 +5,7 @@ import { useState, useEffect, useRef, Suspense } from 'react';
 import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { getMovieDetails } from 'service/api';
 import { makeImgSrc } from 'service/helpers';
+import { Loader } from 'components/Loader/Loader';
 import css from './MovieDetails.module.css';
 import { ReactComponent as ArrowIcon } from '../../icons/arrow-left.svg';
 
@@ -51,7 +52,7 @@ const MovieDetails = () => {
 
       <AdditionalInfo />
 
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense fallback={<Loader className={css.loader} />}>
         <Outlet />
       </Suspense>
     </div>
