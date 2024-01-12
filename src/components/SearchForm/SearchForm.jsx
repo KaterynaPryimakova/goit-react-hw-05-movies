@@ -1,12 +1,18 @@
+import css from './SearchForm.module.css';
+import { ReactComponent as SearchIcon } from '../../icons/search.svg';
+
 export const SearchForm = ({ handleSubmit }) => {
   return (
-    <form onSubmit={() => handleSubmit()}>
+    <form className={css.form} onSubmit={() => handleSubmit()}>
       <input
+        className={css.input}
         type="text"
         placeholder="Enter the name of the movie"
         name="query"
       />
-      <button type="submit">Search</button>
+      <button className={css.button} type="submit">
+        <SearchIcon className={css.icon} />
+      </button>
     </form>
   );
 };
